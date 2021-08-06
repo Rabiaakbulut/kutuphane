@@ -31,7 +31,52 @@ namespace WebKutuphane.Controllers
             y.KullaniciAdi = Session["KullaniciAdiSS"].ToString();
             db2.Yorumlar.Add(y);
             db2.SaveChanges();
+            Response.Redirect(Request.RawUrl);//yorum yaptıktan sonra yorumun gözükmesi için sayfa yenileme
             return PartialView();
+        }
+
+
+
+        [HttpGet]
+        public PartialViewResult KitapAl()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public PartialViewResult KitapAl(int id)
+        {
+            List<UyeBilgileri> üye = GetÜyeler();
+            List<Kitap> kitap = GetKitaplar();
+            foreach (var item in üye)
+            {
+                if (item.KullaniciAdi == Session["KullaniciAdiSS"].ToString() && item.KitapId == null)
+                {
+                    item.KitapId = id;
+                    foreach (var item2 in kitap)
+                    {
+                        if (item2.id == id && item2.mevcutmu == true)
+                        {
+                            item2.mevcutmu = false;
+                            db.SaveChanges();
+                            db2.SaveChanges();
+                        }
+                        //else
+                        //{
+                        //   //üzerinde birden fazla kitap varsa hata mesajı ver ya da kitap alma butonunu aktif etme
+                        //}
+                    }
+                }
+            }
+            return PartialView();
+        }
+
+        public List<UyeBilgileri> GetÜyeler()  //Üyeleri kitap details sayfasında görüntülemek için yorumları çağırıyoruz ve 
+        {                               //viewbag sayesinde view sayfasına birden fazla model gönderiyoruz
+            return db.UyeBilgileris.ToList();
+        }
+        public List<Kitap> GetKitaplar()
+        {
+            return db2.Kitaplar.ToList();
         }
         public ActionResult Signup()
         {

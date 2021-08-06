@@ -8,6 +8,12 @@
         <div class="row">
             <div class="col-4">
                 <img src="/img/@Model.resim" class="img-fluid" alt="@Model.ad adlı kitabın resmi">
+                @if (Model.mevcutmu == false)
+                {
+                    <div class="alert alert-secondary" role="alert" style="margin-top:5px;">
+                        Kitap mevcut değil
+                    </div>
+                }
             </div>
             <div class="col-8">
                 <p><b>KİTAP: </b>@Model.ad</p>
@@ -24,7 +30,7 @@
                 {
                     <p><b>AÇIKLAMA: </b>@Model.açıklama</p>
                 }
-                <!-- Modal (navbardaki çıkış yap butonuna basıldığında açılan pencere)-->
+                <!-- Modal (kitap açıklaması 359 karakterden fazlaysa modal şeklinde tamamını görüntüle)-->
                 <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -65,9 +71,10 @@
 
 </div>
 
-@*/*YORUM EKLEME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/*@
+@*PartialView ile yorum ekleme formu*@
+@Html.Action("YorumYap", "Home")
 
-@Html.Action("YorumYap","Home")
+@Html.Action("KitapAl", "Home")
 
 
 

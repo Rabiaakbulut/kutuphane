@@ -1,0 +1,17 @@
+﻿<div class="content-form">
+    <h1>geri ver</h1>
+    <form method="post">
+
+        @if (Session["KullaniciAdiSS"] != null && Session["KullaniciAdiSS"].ToString() == "admin")
+        {
+            <input type="text" name="IP" id="IP" />
+            <input type="submit" value="KİTAP AL" />
+        }
+        else
+        {
+            @Html.ActionLink("KİTAP vermek İÇİN GİRİŞ", "Login", "Home")
+        }
+
+
+    </form>
+</div>

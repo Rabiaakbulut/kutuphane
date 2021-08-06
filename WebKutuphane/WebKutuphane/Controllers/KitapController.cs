@@ -22,6 +22,36 @@ namespace WebKutuphane.Controllers
             return View(db.Kitaplar.ToList());
         }
 
+        [HttpGet]
+        public PartialViewResult KitapVer()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public PartialViewResult KitapVer(int id, string IP)
+        {
+            string s1 = IP;
+            List<UyeBilgileri> üye = GetÜyeler();
+            List<Kitap> kitap = GetKitaplar();
+            foreach (var item in üye)
+            {
+                if (item.KullaniciAdi == s1 && item.KitapId!=null)
+                {
+                    foreach (var item2 in kitap)
+                    {
+                        if (item2.id == id&& item2.mevcutmu==false)
+                        {
+                            item.KitapId = null;
+                            item2.mevcutmu = true;
+                            db.SaveChanges();
+                            db2.SaveChanges();
+                        }
+                    }
+                }
+            }
+            return PartialView();
+        }
+
         // GET: Kitap/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,6 +70,8 @@ namespace WebKutuphane.Controllers
             ViewBag.Üyeler = üyeler;
             return View(kitap);
         }
+
+        //Veri tabanına SaveChanges ile kayıt yaparken dataread hatası vermemesi için direkt veri tabanından çağırmak yerine liste şeklinde çağırıyoruz
         public List<Yorum> GetYorumlar()  //Yorumları kitap details sayfasında görüntülemek için yorumları çağırıyoruz ve 
         {                               //viewbag sayesinde view sayfasına birden fazla model gönderiyoruz
             return db.Yorumlar.ToList();
@@ -47,6 +79,10 @@ namespace WebKutuphane.Controllers
         public List<UyeBilgileri> GetÜyeler()  //Üyeleri kitap details sayfasında görüntülemek için yorumları çağırıyoruz ve 
         {                               //viewbag sayesinde view sayfasına birden fazla model gönderiyoruz
             return db2.UyeBilgileris.ToList();
+        }
+        public List<Kitap> GetKitaplar() 
+        { 
+            return db.Kitaplar.ToList();
         }
 
         // GET: Kitap/Create
@@ -102,6 +138,7 @@ namespace WebKutuphane.Controllers
             }
             return View(kitap);
         }
+
 
         // GET: Kitap/Delete/5
         public ActionResult Delete(int? id)
