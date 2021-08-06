@@ -1,0 +1,109 @@
+﻿@model WebKutuphane.Models.Kitap
+@using WebKutuphane.Models
+@{
+    ViewBag.Title = "Details";
+}
+<div class="kitapdetay">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <img src="/img/@Model.resim" class="img-fluid" alt="@Model.ad adlı kitabın resmi">
+            </div>
+            <div class="col-8">
+                <p><b>KİTAP: </b>@Model.ad</p>
+                <p><b>YAZAR: </b>@Model.yazar</p>
+                <p><b>TÜR: </b>@Model.tür</p>
+                <p><b>DİL: </b>@Model.dil</p>
+                @if (Model.açıklama != null && @Model.açıklama.Length > 350)
+                {
+                    <p>
+                        <b>AÇIKLAMA: </b>@Model.açıklama.Substring(0, 350)<span style="display:inline;" type="button" class="nav-item nav-link" data-toggle="modal" data-target="#myModal1">... DEVAMI</span>
+                    </p>
+                }
+                else
+                {
+                    <p><b>AÇIKLAMA: </b>@Model.açıklama</p>
+                }
+                <!-- Modal (navbardaki çıkış yap butonuna basıldığında açılan pencere)-->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">@Model.ad</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>@Model.açıklama</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">KAPAT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="yorumlar">
+        @foreach (var yorum in (List<Yorum>)ViewBag.Yorumlar)
+        {
+            if (Model.id == yorum.KitapId)
+            {
+                <div class="yorum-block">
+                    <p>@yorum.Metin</p>
+                    @foreach (var üye in (List<UyeBilgileri>)ViewBag.Üyeler)
+                    {
+                        if (üye.KullaniciAdi == yorum.KullaniciAdi)
+                        {
+                            <p>@üye.Ad @üye.Soyad</p>
+                        }
+                    }
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
+@*/*YORUM EKLEME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/*@
+
+@Html.Action("YorumYap","Home")
+
+
+
+
+
+<style>
+    .container {
+        margin: 20px;
+    }
+
+    /*metinlerin hizalanması*/
+    p {
+        text-align: justify;
+    }
+
+    /* "DEVAMI" butonu*/
+    span:hover {
+        color: blueviolet;
+    }
+
+    .yorumlar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .yorum-block {
+        background-color: lightgrey;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .kitapdetay {
+        margin: 20px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 75%;
+    }
+</style>
+

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_uyelikModelStoreContainer" CdmEntityContainer="db_uyelikEntities">
+    <EntitySetMapping Name="UyeBilgileris">
+      <EntityTypeMapping TypeName="db_uyelikModel.UyeBilgileri">
+        <MappingFragment StoreEntitySet="UyeBilgileri">
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="KullaniciSifre" ColumnName="KullaniciSifre" />
+          <ScalarProperty Name="KullaniciTC" ColumnName="KullaniciTC" />
+          <ScalarProperty Name="KullaniciTelefon" ColumnName="KullaniciTelefon" />
+          <ScalarProperty Name="KitapId" ColumnName="KitapId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

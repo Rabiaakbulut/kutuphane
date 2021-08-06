@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebKutuphane.Models.UyeBilgileri>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ÜYE BİLGİLERİ</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciSifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciTC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciTelefon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciSifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciTC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciTelefon)
+        </td>
+    </tr>
+}
+
+</table>

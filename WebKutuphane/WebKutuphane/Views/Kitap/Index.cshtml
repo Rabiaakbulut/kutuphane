@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebKutuphane.Models.Kitap>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.yazar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tür)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mevcutmu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.açıklama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.yazar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tür)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mevcutmu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.açıklama)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

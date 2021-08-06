@@ -1,0 +1,65 @@
+﻿@model WebKutuphane.Models.UyeBilgileri
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h4 style="text-align:center;">GİRİŞ</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.KullaniciAdi, new { htmlAttributes = new { @class = "form-control", placeholder = "kullanıcı adı" } })
+                @Html.ValidationMessageFor(model => model.KullaniciAdi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.KullaniciSifre, new { htmlAttributes = new { @class = "form-control", placeholder = "şifre" } })
+                @Html.ValidationMessageFor(model => model.KullaniciSifre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-12">
+                <input type="submit" value="Giriş Yap" class="btn btn-default" />
+            </div>
+        </div>
+        @if (ViewBag.uyarı != null)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <div class="alert alert-warning" role="alert">
+                        <label>@ViewBag.uyarı</label>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}
+
+<style>
+    .form-group {
+        margin: 5px;
+    }
+
+    .form-horizontal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

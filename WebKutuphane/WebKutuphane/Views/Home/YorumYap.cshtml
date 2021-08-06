@@ -1,0 +1,21 @@
+﻿
+<div class="content-form">
+    <h1>Yorum</h1>
+    <form method="post">
+
+        @*<input type="text" placeholder="ID" name="KitapId" required />*@
+        @*<input type="text" placeholder="Kullanıcı Adı" name="KullaniciAdi" required />*@
+        @if (Session["KullaniciAdiSS"] != null)
+        {
+            <input type="text" placeholder="Metin" name="Metin" required />
+        }
+        else
+        {
+            @Html.ActionLink("Yorum Yap", "Login")
+        }
+        @*<input type="text" placeholder="Üye ID" name="UyeId" required />*@
+        @*<input type="text" placeholder="Kitap ID" name=@ViewBag.kitapid required />*@
+
+        <input type="submit" value="gönder" />
+    </form>
+</div>
