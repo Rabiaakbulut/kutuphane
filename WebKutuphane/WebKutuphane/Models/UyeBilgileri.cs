@@ -11,32 +11,21 @@ namespace WebKutuphane.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class UyeBilgileri
     {
-        public int KullaniciId { get; set; }
-
-        [Display(Name = "Kullanýcý Adý")]
+        public int Id { get; set; }
         public string KullaniciAdi { get; set; }
-
         public string Ad { get; set; }
-
         public string Soyad { get; set; }
-
-        [DataType(DataType.Password)]
         public string KullaniciSifre { get; set; }
-
-        [DataType(DataType.Password)]
-        [NotMapped]//veri tabanýndaki bir özellikle eþleþmeyecek
+        [NotMapped]
         public string KullaniciSifreTekrar { get; set; }
-
-        [Display(Name = "TC")]
         public string KullaniciTC { get; set; }
-
-        [Display(Name = "Telefon")]
         public string KullaniciTelefon { get; set; }
         public Nullable<int> KitapId { get; set; }
+        public Nullable<System.DateTime> KitapAlÄ±mTarihi { get; set; }
+        public Nullable<int> Ceza { get; set; }
     }
 }

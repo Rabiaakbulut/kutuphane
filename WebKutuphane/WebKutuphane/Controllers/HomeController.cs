@@ -10,7 +10,7 @@ namespace WebKutuphane.Controllers
 {
     public class HomeController : Controller
     {
-        db_uyelikEntities db = new db_uyelikEntities(); //üyelik, login, signup, logout
+        db_uyelikEntities1 db = new db_uyelikEntities1(); //üyelik, login, signup, logout
         private KutuphaneContext db2 = new KutuphaneContext();// entity framework -> kitaplar ve yorumlar
         // GET: Home
         public ActionResult Index()
@@ -49,9 +49,10 @@ namespace WebKutuphane.Controllers
             List<Kitap> kitap = GetKitaplar();
             foreach (var item in üye)
             {
-                if (item.KullaniciAdi == Session["KullaniciAdiSS"].ToString() && item.KitapId == null)
+                if (item.KullaniciAdi == Session["KullaniciAdiSS"].ToString() && item.KitapId == null && item.Ceza<2)
                 {
                     item.KitapId = id;
+                    item.KitapAlımTarihi = DateTime.Now;
                     foreach (var item2 in kitap)
                     {
                         if (item2.id == id && item2.mevcutmu == true)
@@ -78,6 +79,7 @@ namespace WebKutuphane.Controllers
         {
             return db2.Kitaplar.ToList();
         }
+
         public ActionResult Signup()
         {
             return View();
@@ -87,6 +89,8 @@ namespace WebKutuphane.Controllers
         public ActionResult Signup(UyeBilgileri uyeBilgileri)
         {
             uyeBilgileri.KitapId = null;//üye olurken üzerine kayıtlı kitap olmasın
+            uyeBilgileri.KitapAlımTarihi = null;
+            uyeBilgileri.Ceza = 0;
             if (db.UyeBilgileris.Any(x => x.KullaniciAdi == uyeBilgileri.KullaniciAdi))//girilen kullanıcı adına ait bir kayıt varsa uyarı ver
             {
                 ViewBag.uyarı1 = "Kullanıcı adı alınmış";
@@ -102,7 +106,7 @@ namespace WebKutuphane.Controllers
                 db.UyeBilgileris.Add(uyeBilgileri);
                 db.SaveChanges();
                 //Sessionlar her kullanıcı için özel verileri tutmayı sağlar
-                Session["KullaniciIdSS"] = uyeBilgileri.KullaniciId.ToString();
+                Session["KullaniciIdSS"] = uyeBilgileri.Id.ToString();
                 Session["KullaniciAdiSS"] = uyeBilgileri.KullaniciAdi.ToString();//home index sayfasında "Merhaba kullanıcıAdı"
                 return RedirectToAction("Index", "Home");
             }
@@ -127,7 +131,7 @@ namespace WebKutuphane.Controllers
 
             if (checkLogin != null) //Girilen kullanıcı adı ve şifreye ait veri tabanında kayıt varsa
             {
-                Session["KullaniciIdSS"] = uyeBilgileri.KullaniciId.ToString();
+                Session["KullaniciIdSS"] = uyeBilgileri.Id.ToString();
                 Session["KullaniciAdiSS"] = uyeBilgileri.KullaniciAdi.ToString();
 
                 if (uyeBilgileri.KullaniciAdi.ToString() == "admin")//adminse

@@ -59,10 +59,14 @@
             @Html.DisplayFor(modelItem => item.açıklama)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-            @Html.ActionLink("KitapVer", "KitapVer", new { id=item.id })
+            @Html.ActionLink("DÜZENLE", "Edit", new { id = item.id }) |
+            @Html.ActionLink("DETAY", "Details", new { id = item.id }) |
+            @Html.ActionLink("SİL", "Delete", new { id = item.id }) |
+            @if (item.mevcutmu == false)
+            {
+                @Html.ActionLink("İADE", "KitapVer", new { id = item.id })
+            }
+
         </td>
     </tr>
 }

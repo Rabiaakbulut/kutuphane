@@ -1,20 +1,22 @@
 ﻿@model WebKutuphane.Models.Kitap
 
+@using (Html.BeginForm("KitapAl", "Home", FormMethod.Post))
+{
+    <div class="content-form">
+        <form method="post">
 
-<div class="content-form">
-    <h1>Yorum</h1>
-    <form method="post">
-
-        @if (Session["KullaniciAdiSS"] != null)
-        {
-            <input type="submit" value="KİTAP AL" />
-        }
-        else
-        {
-            @Html.ActionLink("KİTAP ALMAK İÇİN GİRİŞ", "Login")
-        }
+            @if (Session["KullaniciAdiSS"] != null)
+            {
+                <input type="submit" value="KİTAP AL" />
+                <a href="/Home/Index">geri dön</a>
+            }
+            else
+            {
+                @Html.ActionLink("KİTAP ALMAK İÇİN GİRİŞ", "Login")
+            }
 
 
-    </form>
-</div>
+        </form>
+    </div>
+}
 

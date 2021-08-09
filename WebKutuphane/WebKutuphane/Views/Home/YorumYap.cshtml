@@ -1,17 +1,19 @@
-﻿
-<div class="content-form">
-    <h1>Yorum</h1>
-    <form method="post">
+﻿@using (Html.BeginForm("YorumYap", "Home", FormMethod.Post))
+{
+    <div class="content-form">
+        <h1>Yorum</h1>
+        <form method="post">
 
-        @if (Session["KullaniciAdiSS"] != null)
-        {
-            <input type="text" placeholder="Metin" name="Metin" required />
-            <input type="submit" value="gönder"/>
-        }
-        else
-        {
-            @Html.ActionLink("Yorum Yap", "Login")
-        }
+            @if (Session["KullaniciAdiSS"] != null)
+            {
+                <input type="text" placeholder="Metin" name="Metin" required />
+                <input type="submit" value="gönder" />
+            }
+            else
+            {
+                @Html.ActionLink("Yorum Yap", "Login")
+            }
 
-    </form>
-</div>
+        </form>
+    </div>
+}

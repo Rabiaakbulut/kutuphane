@@ -15,7 +15,7 @@ namespace WebKutuphane.Controllers
     public class KitapController : BaseController
     {
         private KutuphaneContext db = new KutuphaneContext();
-        db_uyelikEntities db2 = new db_uyelikEntities();
+        db_uyelikEntities1 db2 = new db_uyelikEntities1();
         // GET: Kitap
         public ActionResult Index()
         {
@@ -28,21 +28,31 @@ namespace WebKutuphane.Controllers
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult KitapVer(int id, string IP)
+        public PartialViewResult KitapVer(int id, string iadeEden)
         {
-            string s1 = IP;
+            string kitabiVeren= iadeEden;
             List<UyeBilgileri> üye = GetÜyeler();
             List<Kitap> kitap = GetKitaplar();
             foreach (var item in üye)
             {
-                if (item.KullaniciAdi == s1 && item.KitapId!=null)
+                if (item.KullaniciAdi == kitabiVeren && item.KitapId!=null)
                 {
                     foreach (var item2 in kitap)
                     {
                         if (item2.id == id&& item2.mevcutmu==false)
                         {
                             item.KitapId = null;
+                            
                             item2.mevcutmu = true;
+                            //item.kitapAlımTarihi nullable şekilde tanımlandığı için TimeSpan? oluyor ve timespan? days özelliği olmadığı için bu şkelil tanımlıyoruz
+                            if ((DateTime.Now - (item.KitapAlımTarihi != null ? item.KitapAlımTarihi : DateTime.Now)).Value.Days > 20)
+                            {
+                                if (item.Ceza == null)
+                                    item.Ceza = 1;
+                                else
+                                    item.Ceza += 1;
+                            }
+                            item.KitapAlımTarihi = null;//ceza ekleeeeee3
                             db.SaveChanges();
                             db2.SaveChanges();
                         }
@@ -51,6 +61,7 @@ namespace WebKutuphane.Controllers
             }
             return PartialView();
         }
+
 
         // GET: Kitap/Details/5
         public ActionResult Details(int? id)

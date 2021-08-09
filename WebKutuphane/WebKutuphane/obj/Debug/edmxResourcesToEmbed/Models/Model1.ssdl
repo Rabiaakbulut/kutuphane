@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_uyelikModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UyeBilgileri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="20" />
+    <Property Name="Soyad" Type="varchar" MaxLength="20" />
+    <Property Name="KullaniciSifre" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="KullaniciTC" Type="nvarchar" MaxLength="11" />
+    <Property Name="KullaniciTelefon" Type="nvarchar" MaxLength="11" />
+    <Property Name="KitapId" Type="int" />
+    <Property Name="KitapAlımTarihi" Type="date" />
+    <Property Name="Ceza" Type="int" />
+  </EntityType>
+  <EntityContainer Name="db_uyelikModel1StoreContainer">
+    <EntitySet Name="UyeBilgileri" EntityType="Self.UyeBilgileri" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

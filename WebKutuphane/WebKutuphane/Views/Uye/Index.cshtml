@@ -5,7 +5,7 @@
 }
 
 <h2>ÜYE BİLGİLERİ</h2>
-
+@Html.Action("İadeCeza", "Uye")
 <table class="table">
     <tr>
         <th>
@@ -29,33 +29,46 @@
         <th>
             @Html.DisplayNameFor(model => model.KitapId)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KitapAlımTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ceza)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.KullaniciAdi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Ad)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Soyad)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.KullaniciSifre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.KullaniciTC)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.KullaniciTelefon)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.KitapId)
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciSifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciTC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciTelefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KitapId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KitapAlımTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ceza)
+            </td>
+        </tr>
+    }
 
 </table>
