@@ -14,7 +14,7 @@ namespace WebKutuphane.Utils
         {
             string controllerName = filterContext.RouteData.Values["controller"].ToString();
             string actionName = filterContext.RouteData.Values["action"].ToString();
-            bool isControl = controllerName == "Kitap" && actionName == "Details" || controllerName=="Home" ;
+            bool isControl = controllerName == "Kitap" && actionName == "Details" || controllerName=="Home" || controllerName == "Kitap" && actionName == "KitapAl";
 
             if (!isControl)//Home controller ve Kitap controllerinin Details sayfası dışındakilere sadece admin erişebilsin
             {

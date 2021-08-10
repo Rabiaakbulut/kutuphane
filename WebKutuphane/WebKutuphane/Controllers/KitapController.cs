@@ -62,6 +62,36 @@ namespace WebKutuphane.Controllers
             return PartialView();
         }
 
+        public ActionResult KitapAl()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult KitapAl(int id)
+        {
+            Kitap kitap = db.Kitaplar.Find(id);
+            List<UyeBilgileri> üye = GetÜyeler();
+            foreach (var item in üye)
+            {
+                if (item.KullaniciAdi == Session["KullaniciAdiSS"].ToString() && item.KitapId == null && item.Ceza < 2)
+                {
+                    item.KitapId = id;
+                    item.KitapAlımTarihi = DateTime.Now;
+                    if (kitap.mevcutmu == true)
+                    {
+                        kitap.mevcutmu = false;
+                        db.SaveChanges();
+                        db2.SaveChanges();
+                    }
+                    //else
+                    //{
+                    //   //üzerinde birden fazla kitap varsa hata mesajı ver ya da kitap alma butonunu aktif etme
+                    //}
+                }
+            }
+            return View();
+        }
+
 
         // GET: Kitap/Details/5
         public ActionResult Details(int? id)
@@ -111,11 +141,12 @@ namespace WebKutuphane.Controllers
         {
             if (ModelState.IsValid)
             {
+                kitap.mevcutmu = true;
                 db.Kitaplar.Add(kitap);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             return View(kitap);
         }
 

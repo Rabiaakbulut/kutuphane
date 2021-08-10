@@ -1,7 +1,9 @@
-﻿@model WebKutuphane.Models.Kitap
+﻿
+@{
+    ViewBag.Title = "KitapAl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-@using (Html.BeginForm("KitapAl", "Home", FormMethod.Post))
-{
     <div class="content-form">
         <form method="post">
 
@@ -12,11 +14,9 @@
             }
             else
             {
-                @Html.ActionLink("KİTAP ALMAK İÇİN GİRİŞ", "Login")
+                @Html.ActionLink("KİTAP ALMAK İÇİN GİRİŞ", "Login","Home")
             }
 
 
         </form>
     </div>
-}
-

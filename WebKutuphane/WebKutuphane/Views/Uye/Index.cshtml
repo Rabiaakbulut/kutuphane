@@ -66,7 +66,19 @@
                 @Html.DisplayFor(modelItem => item.KitapAlımTarihi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ceza)
+                @if (item.Ceza == 2)
+                {
+                    <div style="background-color:maroon; text-align:center;">@Html.DisplayFor(modelItem => item.Ceza)</div>
+
+                }
+                else if (item.Ceza == 1)
+                {
+                    <div style="background-color:orange; text-align:center;">@Html.DisplayFor(modelItem => item.Ceza)</div>
+                }
+                else
+                {
+            <div style="background-color:lightgreen; text-align:center;">@Html.DisplayFor(modelItem => item.Ceza)</div>
+                }
             </td>
         </tr>
     }

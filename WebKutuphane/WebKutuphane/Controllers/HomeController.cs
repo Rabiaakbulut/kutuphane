@@ -18,6 +18,40 @@ namespace WebKutuphane.Controllers
             return View(db2.Kitaplar.ToList());
 
         }
+        [HttpPost]
+        public ActionResult Index(List<string> tür, List<string> dil)
+        {
+            List<Kitap> kitaplar = new List<Kitap>();
+
+            if (tür == null)
+            {
+                tür = new List<string>();//null listeyi başlatmadan önce eleman eklenemiyor
+                tür.Add("Edebiyat");
+                tür.Add("ÇocukVeGençlik");
+                tür.Add("AraştırmaTarih");
+                tür.Add("SanatTasarım");
+                tür.Add("Felsefe");
+                tür.Add("Bilim");
+                tür.Add("ÇizgiRoman");
+            }
+
+            if (dil == null)
+            {
+                dil = new List<string>();
+                dil.Add("Türkçe");
+                dil.Add("İngilizce");
+                dil.Add("Almanca");
+                dil.Add("Diğer");
+            }
+
+            foreach (var kitap in GetKitaplar())
+            {
+                if (tür.Contains(kitap.tür) && dil.Contains(kitap.dil))
+                    kitaplar.Add(kitap);
+            }
+            return View(kitaplar);
+
+        }
 
         [HttpGet]
         public PartialViewResult YorumYap()
@@ -32,42 +66,6 @@ namespace WebKutuphane.Controllers
             db2.Yorumlar.Add(y);
             db2.SaveChanges();
             Response.Redirect(Request.RawUrl);//yorum yaptıktan sonra yorumun gözükmesi için sayfa yenileme
-            return PartialView();
-        }
-
-
-
-        [HttpGet]
-        public PartialViewResult KitapAl()
-        {
-            return PartialView();
-        }
-        [HttpPost]
-        public PartialViewResult KitapAl(int id)
-        {
-            List<UyeBilgileri> üye = GetÜyeler();
-            List<Kitap> kitap = GetKitaplar();
-            foreach (var item in üye)
-            {
-                if (item.KullaniciAdi == Session["KullaniciAdiSS"].ToString() && item.KitapId == null && item.Ceza<2)
-                {
-                    item.KitapId = id;
-                    item.KitapAlımTarihi = DateTime.Now;
-                    foreach (var item2 in kitap)
-                    {
-                        if (item2.id == id && item2.mevcutmu == true)
-                        {
-                            item2.mevcutmu = false;
-                            db.SaveChanges();
-                            db2.SaveChanges();
-                        }
-                        //else
-                        //{
-                        //   //üzerinde birden fazla kitap varsa hata mesajı ver ya da kitap alma butonunu aktif etme
-                        //}
-                    }
-                }
-            }
             return PartialView();
         }
 

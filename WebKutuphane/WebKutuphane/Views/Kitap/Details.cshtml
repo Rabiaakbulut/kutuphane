@@ -30,6 +30,7 @@
                 {
                     <p><b>AÇIKLAMA: </b>@Model.açıklama</p>
                 }
+                @Html.ActionLink("kitap al","KitapAl", new { id = Model.id })
                 <!-- Modal (kitap açıklaması 359 karakterden fazlaysa modal şeklinde tamamını görüntüle)-->
                 <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog">
@@ -74,7 +75,10 @@
 @*PartialView ile yorum ekleme formu*@
 
 @Html.Action("YorumYap", "Home")
-@Html.Action("KitapAl", "Home")
+
+
+
+
 
 
 

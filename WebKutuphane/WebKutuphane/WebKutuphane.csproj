@@ -204,9 +204,9 @@
     <Content Include="Views\Yorum\Edit.cshtml" />
     <Content Include="Views\Yorum\Index.cshtml" />
     <Content Include="Views\Home\YorumYap.cshtml" />
-    <Content Include="Views\Home\KitapAl.cshtml" />
     <Content Include="Views\Kitap\KitapVer.cshtml" />
     <Content Include="Views\Uye\İadeCeza.cshtml" />
+    <Content Include="Views\Kitap\KitapAl.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

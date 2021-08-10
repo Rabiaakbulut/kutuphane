@@ -56,7 +56,14 @@
             @Html.DisplayFor(modelItem => item.resim)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.açıklama)
+            @if (item.açıklama != null && item.açıklama.Length > 50)
+            {
+                <p>@item.açıklama.Substring(0, 50) ...</p>
+            }
+            else
+            {
+                <p>@item.açıklama</p>
+            }
         </td>
         <td>
             @Html.ActionLink("DÜZENLE", "Edit", new { id = item.id }) |
