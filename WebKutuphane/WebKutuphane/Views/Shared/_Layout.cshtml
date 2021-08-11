@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+    <!--hareketli ikonlar-->
+    <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
+
     @*
         <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,7 +35,14 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/Home/Index" style="margin-left: 20px;font-size: 20px;"><i class="fal fa-books"></i> KÜTÜPHANE</a>
+        <a class="navbar-brand" href="/Home/Index" style="margin-left: 20px;font-size: 20px;">
+            <lord-icon src="https://cdn.lordicon.com/wxnxiano.json"
+                       trigger="loop-on-hover"
+                       delay="1000"
+                       colors="primary:#a66037,secondary:#c67d53"
+                       style="width:50px;height:50px">
+            </lord-icon> KÜTÜPHANE
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
