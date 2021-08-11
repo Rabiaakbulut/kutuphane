@@ -29,6 +29,7 @@ namespace WebKutuphane.DAL
 
             yorumlar.ForEach(s => context.Yorumlar.Add(s));
             context.SaveChanges();
+
         }
     }
 }

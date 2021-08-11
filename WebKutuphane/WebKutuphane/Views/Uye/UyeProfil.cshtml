@@ -1,0 +1,43 @@
+﻿@model WebKutuphane.Models.UyeBilgileri
+@{
+    ViewBag.Title = "UyeProfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["KullaniciAdiSS"] != null)
+{
+    <h2>UyeProfil</h2>
+
+    <li>@Model.Ad</li>
+    <li>@Model.Soyad</li>
+    <li>@Model.KullaniciAdi</li>
+    if (Model.Ceza == 0)
+    {
+        <li>tebrikler hiç cezanız yok</li>
+    }
+    else if (Model.Ceza == 1)
+    {
+        <li>1 cezaznız var</li>
+    }
+    else
+    {
+        <li>Kitap almaya devam etmek istiyorsanız lütfen ceza ücretinizi kütüphane yöneticilerine ödeyiniz</li>
+    }
+
+    if (Model.KitapId == null)
+    {
+        <li>üzerinize kayıtlı kitap yok</li>
+    }
+    else
+    {
+        <li>@ViewBag.kitapAdı</li>
+        <a href="/Kitap/Details/@ViewBag.kitapId">Kitap detayı</a>
+    }
+}
+else
+{
+
+    <p>profil oluşturmak için<a href="/Home/Signup">üye</a> olun</p>
+    <p>Zten <a href="/Home/Login">üye</a> misiniz</p>
+}
+

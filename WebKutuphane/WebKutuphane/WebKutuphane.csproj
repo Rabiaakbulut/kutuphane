@@ -207,6 +207,7 @@
     <Content Include="Views\Kitap\KitapVer.cshtml" />
     <Content Include="Views\Uye\İadeCeza.cshtml" />
     <Content Include="Views\Kitap\KitapAl.cshtml" />
+    <Content Include="Views\Uye\UyeProfil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

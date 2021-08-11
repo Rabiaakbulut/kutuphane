@@ -75,8 +75,8 @@ C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\tr\System.Web.Webpage
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\tr\System.Web.Webpages.Razor.resources.dll
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\tr\System.Web.Helpers.resources.dll
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\tr\System.Web.Mvc.resources.dll
-C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.csprojAssemblyReference.cache
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.csproj.CoreCompileInputs.cache
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.dll
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.pdb
+C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.csproj.AssemblyReference.cache

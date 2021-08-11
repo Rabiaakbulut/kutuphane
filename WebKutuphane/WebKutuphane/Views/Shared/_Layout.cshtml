@@ -51,6 +51,7 @@
                 @if (Session["KullaniciAdiSS"] != null)
                 {
                     <p class="nav-item nav-link">MERHABA @Session["KullaniciAdiSS"]! </p>
+                    <a class="nav-item nav-link" href="/Uye/UyeProfil">Profilim</a>
                     <a class="nav-item nav-link" href="/Home/Index">ANA SAYFA</a>
                     if (Session["KullaniciAdiSS"].ToString() == "admin")
                     {
