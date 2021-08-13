@@ -53,14 +53,14 @@
 
     <div class="form-group">
         <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciTC, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "tc kimlik numarası", MaxLength = "11" ,MinLength="11"} })
+            @Html.EditorFor(model => model.KullaniciTC, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "tc kimlik numarası", MaxLength = "11", MinLength = "11" } })
             @Html.ValidationMessageFor(model => model.KullaniciTC, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciTelefon, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "telefon (başa 0 koymayınız)", MaxLength = "10", MinLength = "10" } })
+            @Html.EditorFor(model => model.KullaniciTelefon, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "telefon", MaxLength = "10", MinLength = "10" } })
             @Html.ValidationMessageFor(model => model.KullaniciTelefon, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -105,6 +105,9 @@
         flex-direction:column;
         justify-content:center;
         align-items:center;
+    }
+    .form-control{
+        text-align:center;
     }
 </style>
 

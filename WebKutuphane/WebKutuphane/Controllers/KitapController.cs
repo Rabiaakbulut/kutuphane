@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -137,10 +139,52 @@ namespace WebKutuphane.Controllers
         // Daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,ad,yazar,tür,dil,mevcutmu,resim,açıklama")] Kitap kitap)
+        public ActionResult Create([Bind(Include = "id,ad,yazar,tür,mevcutmu,resim")] Kitap kitap,string dil,string tür)
         {
             if (ModelState.IsValid)
             {
+                kitap.dil = dil;
+                kitap.tür = tür;
+                string kitabınAdı = kitap.ad;
+                try
+                {
+                    WebClient client = new WebClient();
+                    string strPgeCode = client.DownloadString($"https://tr.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles={kitabınAdı}");
+                    dynamic dobj = JsonConvert.DeserializeObject<dynamic>(strPgeCode);
+                    string temp = (string)((Newtonsoft.Json.Linq.JContainer)((Newtonsoft.Json.Linq.JContainer)((Newtonsoft.Json.Linq.JContainer)dobj["query"]["pages"]).First).First).Last;
+                    kitap.açıklama = temp;
+                }
+                catch
+                {
+                    kitap.açıklama = "Bilgi bulunamadı";
+                }
+
+                //string fileName = Path.GetFileNameWithoutExtension(kitap.resim);
+                //string extension = Path.GetExtension(kitap.resim);
+                //fileName = fileName + extension;
+                //kitap.resim = "/img/"+fileName;
+                //fileName = Path.Combine(Server.MapPath("/img/"), fileName);
+
+
+
+                //if (Request.Files.Count > 0)
+                //{
+                //    var fileSavePath = "";
+                //    var uploadedFile = Request.Files[0];
+                //    string fileName = Path.GetFileName(uploadedFile.FileName);
+                //    fileSavePath = Path.Combine("Image", fileName);
+                //    Request.Files[0].SaveAs(Server.MapPath(fileSavePath));
+                //    kitap.resim = fileSavePath;
+                //}
+                //}
+                //if (Request.Files.Count > 0)
+                //    {
+                //        string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
+                //        string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                //        string yol = "~/Image/" + dosyaadi + uzanti;
+                //        Request.Files[0].SaveAs(Server.MapPath(yol));
+                //        kitap.resim = "/Image/" + dosyaadi + uzanti;
+                //    }
                 kitap.mevcutmu = true;
                 db.Kitaplar.Add(kitap);
                 db.SaveChanges();
@@ -170,10 +214,16 @@ namespace WebKutuphane.Controllers
         // Daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,ad,yazar,tür,dil,mevcutmu,resim,açıklama")] Kitap kitap)
+        public ActionResult Edit([Bind(Include = "id,ad,yazar,tür,dil,mevcutmu,açıklama,resim")] Kitap kitap)
         {
             if (ModelState.IsValid)
             {
+                //WebClient client = new WebClient();
+                //string deneme = kitap.ad;
+                //string strPgeCode = client.DownloadString($"https://tr.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles={deneme}");
+                //dynamic dobj = JsonConvert.DeserializeObject<dynamic>(strPgeCode);
+                //string temp = (string)((Newtonsoft.Json.Linq.JContainer)((Newtonsoft.Json.Linq.JContainer)((Newtonsoft.Json.Linq.JContainer)dobj["query"]["pages"]).First).First).Last;
+                //kitap.açıklama = temp;
                 db.Entry(kitap).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

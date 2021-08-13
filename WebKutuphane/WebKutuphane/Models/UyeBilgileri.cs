@@ -11,6 +11,7 @@ namespace WebKutuphane.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class UyeBilgileri
@@ -19,8 +20,10 @@ namespace WebKutuphane.Models
         public string KullaniciAdi { get; set; }
         public string Ad { get; set; }
         public string Soyad { get; set; }
+        [DataType(DataType.Password)]
         public string KullaniciSifre { get; set; }
         [NotMapped]
+        [DataType(DataType.Password)]
         public string KullaniciSifreTekrar { get; set; }
         public string KullaniciTC { get; set; }
         public string KullaniciTelefon { get; set; }

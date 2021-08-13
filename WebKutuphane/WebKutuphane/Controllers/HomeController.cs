@@ -19,8 +19,8 @@ namespace WebKutuphane.Controllers
 
         }
         [HttpPost]
-        public ActionResult Index(List<string> tür, List<string> dil)
-        {
+        public ActionResult Index(List<string> tür, List<string> dil,string mevcutmu)
+        {          
             List<Kitap> kitaplar = new List<Kitap>();
 
             if (tür == null)
@@ -44,13 +44,31 @@ namespace WebKutuphane.Controllers
                 dil.Add("Diğer");
             }
 
-            foreach (var kitap in GetKitaplar())
+            if (mevcutmu=="evet")
             {
-                if (tür.Contains(kitap.tür) && dil.Contains(kitap.dil))
-                    kitaplar.Add(kitap);
+                foreach (var kitap in GetKitaplar())
+                {
+                    if (tür.Contains(kitap.tür) && dil.Contains(kitap.dil) && kitap.mevcutmu == true)
+                        kitaplar.Add(kitap);
+                }
+            }
+            else if(mevcutmu=="hayır")
+            {
+                foreach (var kitap in GetKitaplar())
+                {
+                    if (tür.Contains(kitap.tür) && dil.Contains(kitap.dil) && kitap.mevcutmu == false)
+                        kitaplar.Add(kitap);
+                }
+            }
+            else
+            {
+                foreach (var kitap in GetKitaplar())
+                {
+                    if (tür.Contains(kitap.tür) && dil.Contains(kitap.dil))
+                        kitaplar.Add(kitap);
+                }
             }
             return View(kitaplar);
-
         }
 
         [HttpGet]

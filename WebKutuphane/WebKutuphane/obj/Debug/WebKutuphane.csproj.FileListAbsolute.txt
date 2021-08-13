@@ -80,3 +80,5 @@ C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.cs
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.dll
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.pdb
 C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\obj\Debug\WebKutuphane.csproj.AssemblyReference.cache
+C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\Newtonsoft.Json.dll
+C:\Users\LENOVO\source\repos\WebKutuphane\WebKutuphane\bin\Newtonsoft.Json.xml
