@@ -1,19 +1,37 @@
-﻿@using (Html.BeginForm("YorumYap", "Home", FormMethod.Post))
-{
-    <div class="content-form">
-        <h1>Yorum</h1>
-        <form method="post">
-
-            @if (Session["KullaniciAdiSS"] != null)
-            {
-                <input type="text" placeholder="Metin" name="Metin" required />
-                <input type="submit" value="gönder" />
-            }
-            else
-            {
-                @Html.ActionLink("Yorum Yap", "Login")
-            }
-
-        </form>
-    </div>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using (Html.BeginForm("YorumYap", "Home", FormMethod.Post))
+{
+    <form method="post">
+
+        @if (Session["KullaniciAdiSS"] != null)
+        {
+            <div class="yorumyap">
+                <input type="text" placeholder="Yorumu buraya yazın." name="Metin" style="width:900px; height:100px;" required />
+                <input type="submit" value="GÖNDER" class="buton" />
+            </div>
+        }
+        else
+        {
+            @Html.ActionLink("YORUM YAPMAK İÇİN GİRİŞ", "Login", "Home")
+        }
+
+    </form>
+}
+
+<style>
+    .buton {
+        border: 2px solid #123c69;
+        border-radius: 10px;
+        background-color: #123c69;
+        margin-left: 5px;
+        color: white;
+    }
+
+    .yorumyap {
+        display: flex;
+        margin:200px;
+    }
+</style>

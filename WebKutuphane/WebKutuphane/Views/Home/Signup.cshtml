@@ -4,113 +4,140 @@
     ViewBag.Title = "Signup";
 }
 
-<h2>Signup</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Üyelik</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.KullaniciAdi, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciAdi, new { htmlAttributes = new { @class = "form-control", required = "required" , placeholder = "kullanıcı adı" } })
-            @Html.ValidationMessageFor(model => model.KullaniciAdi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "ad" } })
-            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "soyad" } })
-            @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciSifre, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "şifre" } })
-            @Html.ValidationMessageFor(model => model.KullaniciSifre, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciSifreTekrar, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "şifre tekrar" } })
-            @Html.ValidationMessageFor(model => model.KullaniciSifreTekrar, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciTC, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "tc kimlik numarası", MaxLength = "11", MinLength = "11" } })
-            @Html.ValidationMessageFor(model => model.KullaniciTC, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.EditorFor(model => model.KullaniciTelefon, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "telefon", MaxLength = "10", MinLength = "10" } })
-            @Html.ValidationMessageFor(model => model.KullaniciTelefon, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-
-    @if (ViewBag.uyarı1 != null)
-    {
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="alert alert-warning" role="alert">
-                    <label>@ViewBag.uyarı1</label>
+    <div class="form-horizontal" style="background-color: #fdf8f5">
+        <div class="kutu">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.KullaniciAdi, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.KullaniciAdi, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "kullanıcı adı" } })
+                    @Html.ValidationMessageFor(model => model.KullaniciAdi, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-    }
 
-    @if (ViewBag.uyarı2 != null)
-    {
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="alert alert-warning" role="alert">
-                    <label>@ViewBag.uyarı2</label>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "ad" } })
+                    @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-    }
 
-</div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "soyad" } })
+                    @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.KullaniciSifre, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "şifre" } })
+                    @Html.ValidationMessageFor(model => model.KullaniciSifre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.KullaniciSifreTekrar, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "şifre tekrar" } })
+                    @Html.ValidationMessageFor(model => model.KullaniciSifreTekrar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.KullaniciTC, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "tc kimlik numarası", MaxLength = "11", MinLength = "11" } })
+                    @Html.ValidationMessageFor(model => model.KullaniciTC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.KullaniciTelefon, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "telefon", MaxLength = "10", MinLength = "10" } })
+                    @Html.ValidationMessageFor(model => model.KullaniciTelefon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="ÜYE OL" class="btn" style="background-color: #123c69; color: white; margin-top: 10px; width: 100%; " />
+                </div>
+            </div>
+            @*<button class="g-recaptcha"
+                data-sitekey="6LcxlgMcAAAAAGx3rH5BrhuMTwtK1XyZSg600GQP"
+                data-callback='onSubmit'
+                data-action='submit'>
+            Submit
+        </button>*@
+            <a href="/Home/Login" style="color:#123c69; display:block; text-align:center;">Zaten üye misiniz?<lord-icon src="https://cdn.lordicon.com/lupuorrc.json"
+           trigger="loop"
+           delay="100"
+           colors="primary:#1b1091,secondary:#fad1e6"
+           style="width:50px;height:50px; margin-bottom:15px;">
+</lord-icon></a>
+        </div>
+
+        @if (ViewBag.uyarı1 != null)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-warning" role="alert">
+                        <label>@ViewBag.uyarı1</label>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.uyarı2 != null)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-warning" role="alert">
+                        <label>@ViewBag.uyarı2</label>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
 }
 
 <style>
-    .form-group{
-        margin:5px;
+    .form-group {
+        margin: 5px;
     }
-    .form-horizontal{
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
+
+    .form-horizontal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    .form-control{
-        text-align:center;
+
+    .form-control {
+        text-align: center;
+    }
+
+    .kutu {
+        margin-right: auto;
+        margin-left: auto;
+        background-color: white;
+        padding: 50px;
+        border: 5px solid;
+        border-radius: 20px;
+    }
+    .btn:hover {
+        background-color: #7ba3ce !important;
     }
 </style>
-
+@*<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>*@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

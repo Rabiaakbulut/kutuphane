@@ -6,8 +6,23 @@
 <div class="kitapdetay">
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-4" style="margin-left:10px;">
                 <img src="/img/@Model.resim" class="img-fluid" alt="@Model.ad adlı kitabın resmi">
+                <div class="linkler">
+                    @if (Session["KullaniciAdiSS"] != null)
+                    {
+                        <button class="col-md-6">
+                            @Html.ActionLink("YorumYap", "YorumYap",
+                            "Home", new { id = Model.id }, null)
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="col-md-6" onclick="deneme()" style="color:white;">Yorum Yap</button>
+                    }
+                    <button class="col-md-6">@Html.ActionLink("Kitap Al", "KitapAl", new { id = Model.id })</button>
+                </div>
+
                 @if (Model.mevcutmu == false)
                 {
                     <div class="alert alert-secondary" role="alert" style="margin-top:5px;">
@@ -15,7 +30,7 @@
                     </div>
                 }
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <p><b>KİTAP: </b>@Model.ad</p>
                 <p><b>YAZAR: </b>@Model.yazar</p>
                 <p><b>TÜR: </b>@Model.tür</p>
@@ -23,14 +38,14 @@
                 @if (Model.açıklama != null && @Model.açıklama.Length > 350)
                 {
                     <p>
-                        <b>AÇIKLAMA: </b>@Model.açıklama.Substring(0, 350)<span style="display:inline;" type="button" class="nav-item nav-link" data-toggle="modal" data-target="#myModal1">... DEVAMI</span>
+                        <b>AÇIKLAMA: </b>@Model.açıklama.Substring(0, 350)<span style="display:inline;" type="button" data-toggle="modal" data-target="#myModal1">... DEVAMI</span>
                     </p>
                 }
                 else
                 {
                     <p><b>AÇIKLAMA: </b>@Model.açıklama</p>
                 }
-                @Html.ActionLink("kitap al","KitapAl", new { id = Model.id })
+
                 <!-- Modal (kitap açıklaması 359 karakterden fazlaysa modal şeklinde tamamını görüntüle)-->
                 <div class="modal fade" id="myModal1" role="dialog">
                     <div class="modal-dialog">
@@ -57,12 +72,12 @@
             if (Model.id == yorum.KitapId)
             {
                 <div class="yorum-block">
-                    <p>@yorum.Metin</p>
+                    <p><i class="fas fa-comment-alt" style="margin-right:5px;"></i> @yorum.Metin</p>
                     @foreach (var üye in (List<UyeBilgileri>)ViewBag.Üyeler)
                     {
                         if (üye.KullaniciAdi == yorum.KullaniciAdi)
                         {
-                            <p>@üye.Ad @üye.Soyad</p>
+                            <p><i class="fas fa-user" style="margin-right:5px;"></i> @üye.Ad @üye.Soyad</p>
                         }
                     }
                 </div>
@@ -72,17 +87,11 @@
 
 </div>
 
-@*PartialView ile yorum ekleme formu*@
-
-@Html.Action("YorumYap", "Home")
-
-
-
-
-
-
-
-
+<script>
+    function deneme() {
+        window.location.href = '/Home/Login';
+    }
+</script>
 
 <style>
     .container {
@@ -102,10 +111,14 @@
     .yorumlar {
         display: flex;
         flex-direction: column;
+        background-color: #f7ebe5;
+        margin-top: 30px;
+        padding: 20px;
+        margin: 30px;
     }
 
     .yorum-block {
-        background-color: lightgrey;
+        background-color: #ccc2bd;
         margin: 10px;
         padding: 10px;
     }
@@ -115,6 +128,32 @@
         margin-right: auto;
         margin-left: auto;
         width: 75%;
+    }
+    .linkler a {
+        text-decoration: none;
+        color: white;
+    }
+    button {
+        border: 2px solid #123c69;
+        border-radius: 10px;
+        width: 100%;
+        background-color: #123c69;
+        margin:2px;
+    }
+        button:hover {
+            background-color: #080b284d;
+        }
+    .linkler{
+        display:flex;
+        margin:10px;
+    }
+    .col-7 {
+        margin-left:30px;
+        background-color:#f7ebe5;
+        padding:50px;
+    }
+    img {
+        width: 100%;
     }
 </style>
 

@@ -9,8 +9,7 @@
 
             @if (Session["KullaniciAdiSS"] != null)
             {
-                <input type="submit" value="KİTAP AL" />
-                <a href="/Home/Index">geri dön</a>
+                <input type="submit" value="ONAYLA" class="buton" />
             }
             else
             {
@@ -20,3 +19,16 @@
 
         </form>
     </div>
+
+<style>
+    form{
+        margin-left:45%;
+    }
+    .buton {
+        border: 2px solid #123c69;
+        border-radius: 10px;
+        background-color: #123c69;
+        margin-left: 5px;
+        color: white;
+    }
+</style>
