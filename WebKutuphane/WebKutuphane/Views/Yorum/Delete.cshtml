@@ -4,45 +4,33 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+@if (Session["KullaniciAdiSS"] != null && Model.KullaniciAdi == Session["KullaniciAdiSS"].ToString())
+{
+    <div class="kutu">
+        <h3>Yorumu silmek istediğinize emin misiniz?</h3>
+        <p><b>Yorum: </b>@Html.DisplayFor(model => model.Metin)</p>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Yorum</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.KitapId)
-        </dt>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.KitapId)
-        </dd>
+            <div class="form-actions no-color">
+                <input type="submit" value="SİL" class="btn" style="background-color: #123c69; color: white; width:100%;" />
+            </div>
+        }
+    </div>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KullaniciAdi)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KullaniciAdi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Metin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Metin)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<style>
+    .kutu {
+        margin: 100px 400px;
+        background-color: white;
+        padding: 50px;
+        border: 5px solid #123c69;
+        border-radius: 20px;
     }
-</div>
+    .btn:hover {
+        background-color: #7ba3ce !important;
+    }
+</style>

@@ -30,7 +30,7 @@
                     </div>
                 }
             </div>
-            <div class="col-7">
+            <div class="col-7" style="border: 2px solid white; border-radius: 50px;">
                 <p><b>KİTAP: </b>@Model.ad</p>
                 <p><b>YAZAR: </b>@Model.yazar</p>
                 <p><b>TÜR: </b>@Model.tür</p>
@@ -66,21 +66,43 @@
         </div>
     </div>
 
-    <div class="yorumlar">
+    <div class="yorumlar" style="margin: 10px; border: 2px solid white; border-radius: 50px;">
+        <div class="başlık" style="display:flex;">
+            <h3>YORUMLAR</h3>
+            <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json"
+                       trigger="loop-on-hover"
+                       colors="primary:#123c69,secondary:#123c69"
+                       style="width:50px;height:50px">
+            </lord-icon>
+        </div>
         @foreach (var yorum in (List<Yorum>)ViewBag.Yorumlar)
         {
             if (Model.id == yorum.KitapId)
             {
-                <div class="yorum-block">
-                    <p><i class="fas fa-comment-alt" style="margin-right:5px;"></i> @yorum.Metin</p>
-                    @foreach (var üye in (List<UyeBilgileri>)ViewBag.Üyeler)
-                    {
-                        if (üye.KullaniciAdi == yorum.KullaniciAdi)
-                        {
-                            <p><i class="fas fa-user" style="margin-right:5px;"></i> @üye.Ad @üye.Soyad</p>
-                        }
-                    }
-                </div>
+    <div class="yorum-block" style="border: 2px solid white; border-radius: 10px;">
+        <p><i class="fas fa-comment-alt" style="margin-right:5px;"></i> @yorum.Metin</p>
+        @foreach (var üye in (List<UyeBilgileri>)ViewBag.Üyeler)
+        {
+            if (üye.KullaniciAdi == yorum.KullaniciAdi)
+            {
+                <p><i class="fas fa-user" style="margin-right:5px;"></i> @üye.Ad @üye.Soyad</p>
+
+                if (Session["KullaniciAdiSS"] != null && üye.KullaniciAdi == Session["KullaniciAdiSS"].ToString())
+                {
+                    <div class="sil" style="display:flex;">
+                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
+                                   trigger="loop-on-hover"
+                                   colors="primary:#121331,secondary:#123c69"
+                                   style="width:32px;height:32px; margin-bottom:5px;">
+                        </lord-icon>
+                        @Html.ActionLink("Sil", "Delete", "Yorum", new { id = yorum.Id }, null)
+                    </div>
+
+                }
+
+            }
+        }
+    </div>
             }
         }
     </div>
@@ -111,14 +133,14 @@
     .yorumlar {
         display: flex;
         flex-direction: column;
-        background-color: #f7ebe5;
+        background-color: #E7E7E7;
         margin-top: 30px;
         padding: 20px;
         margin: 30px;
     }
 
     .yorum-block {
-        background-color: #ccc2bd;
+        background-color: white;
         margin: 10px;
         padding: 10px;
     }
@@ -148,9 +170,9 @@
         margin:10px;
     }
     .col-7 {
-        margin-left:30px;
-        background-color:#f7ebe5;
-        padding:50px;
+        margin-left: 30px;
+        background-color: #E7E7E7;
+        padding: 50px;
     }
     img {
         width: 100%;

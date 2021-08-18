@@ -114,7 +114,7 @@ namespace WebKutuphane.Controllers
             Yorum yorum = db.Yorumlar.Find(id);
             db.Yorumlar.Remove(yorum);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)
