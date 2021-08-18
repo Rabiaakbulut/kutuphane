@@ -4,78 +4,89 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.yazar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tür)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mevcutmu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.resim)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.açıklama)
-        </th>
-        <th></th>
-    </tr>
+<div class="kitap" style="margin:30px;">
+    <div style="display:flex; align-items:center;">
+        <h3>KİTAPLAR</h3>
+        <lord-icon src="https://cdn.lordicon.com/mecwbjnp.json" onclick="location.href='/Kitap/Create'"
+                   trigger="loop-on-hover"
+                   colors="primary:#123c69,secondary:#123c69"
+                   style="width: 50px; height: 50px; cursor: pointer; ">
+        </lord-icon>
+    </div>
+    <form method="post" style="float:right; margin-right:50px;">
+        <input type="text" name="search" id="search" placeholder="Ara" />
+        <input type="submit" value="ARA" class="btn btn-light" />
+    </form>
+    <table class="table">
+        <tr>
+            <th>
+                AD
+                @*@Html.DisplayNameFor(model => model.ad)*@
+            </th>
+            <th>
+                YAZAR
+            </th>
+            <th>
+                TÜR
+            </th>
+            <th>
+                DİL
+            </th>
+            <th>
+                MEVCUT
+            </th>
+            <th>
+                DÜZENLE - İNCELE - SİL
+            </th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.yazar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tür)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mevcutmu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.resim)
-        </td>
-        <td>
-            @if (item.açıklama != null && item.açıklama.Length > 50)
-            {
-                <p>@item.açıklama.Substring(0, 50) ...</p>
-            }
-            else
-            {
-                <p>@item.açıklama</p>
-            }
-        </td>
-        <td>
-            @Html.ActionLink("DÜZENLE", "Edit", new { id = item.id }) |
-            @Html.ActionLink("DETAY", "Details", new { id = item.id }) |
-            @Html.ActionLink("SİL", "Delete", new { id = item.id }) |
-            @if (item.mevcutmu == false)
-            {
-                @Html.ActionLink("İADE", "KitapVer", new { id = item.id })
-            }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.yazar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tür)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dil)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mevcutmu)
+                </td>
+                <td>
+                    <lord-icon src="https://cdn.lordicon.com/wloilxuq.json" onclick="location.href = '/Kitap/Edit/@item.id'" new { id=item.id }
+                               trigger="loop-on-hover"
+                               colors="primary:#123c69,secondary:#123c69"
+                               style="width: 50px; height: 50px; cursor: pointer;">
+                    </lord-icon>
+                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" onclick="location.href = '/Kitap/Details/@item.id'" new { id=item.id }
+                               trigger="loop-on-hover"
+                               colors="primary:#123c69,secondary:#123c69"
+                               style="width:50px;height:50px;  cursor: pointer;">
+                    </lord-icon>
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" onclick="location.href = '/Kitap/Delete/@item.id'" new { id=item.id }
+                               trigger="loop-on-hover"
+                               colors="primary:#123c69,secondary:#123c69"
+                               style="width: 50px; height: 50px; cursor: pointer;">
+                    </lord-icon>
+                    @*@Html.ActionLink("SİL", "Delete", new { id = item.id })*@
+                    @if (item.mevcutmu == false)
+                    {
+                        <lord-icon src="https://cdn.lordicon.com/rvuqcvqy.json" onclick="location.href = '/Kitap/KitapVer/@item.id'" new { id=item.id }
+                                   trigger="loop-on-hover"
+                                   colors="primary:#123c69,secondary:#e83a30"
+                                   style="width: 50px; height: 50px; cursor: pointer;">
+                        </lord-icon>
+                    }
 
-        </td>
-    </tr>
-}
-
-</table>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -6,37 +6,99 @@
 
 @if (Session["KullaniciAdiSS"] != null)
 {
-    <h2>UyeProfil</h2>
+<div class="kutu">
+    <div class="ikon">
+        <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json"
+                   trigger="loop"
+                   delay="5000"
+                   colors="primary:#123c69,secondary:#123c69"
+                   style="width:250px;height:250px">
+        </lord-icon>
+    </div>
+    <div class="bilgiler">
+        <p style="margin-top:40px;"><b>Ad: </b>@Model.Ad @Model.Soyad</p>
+        <p><b>Kullanıcı Adı: </b>@Model.KullaniciAdi</p>
 
-    <li>@Model.Ad</li>
-    <li>@Model.Soyad</li>
-    <li>@Model.KullaniciAdi</li>
-    if (Model.Ceza == 0)
-    {
-        <li>tebrikler hiç cezanız yok</li>
-    }
-    else if (Model.Ceza == 1)
-    {
-        <li>1 cezaznız var</li>
+        @if (Model.Ceza == 0)
+        {
+            <div class="ceza">
+                <p><b>Ceza Durumu: </b>Tebrikler hiç cezanız yok </p>
+            </div>
+        }
+        else if (Model.Ceza == 1)
+        {
+            <div class="ceza">
+                <p><b>Ceza Durumu: </b>Dikkat 1 cezanız var </p>
+            </div>
+        }
+        else
+        {
+            <div class="ceza">
+                <p><b>Ceza Durumu: </b>Lütfen ceza ücretinizi kütüphane yöneticilerine ödeyiniz </p>
+            </div>
+        }
+
+        @if (Model.KitapId == null)
+        {
+            <p><b>Kitap: </b>Üzerinize kayıtlı kitap bulunamadı</p>
+        }
+        else
+        {
+            <p><b>Kitap: </b><a href="/Kitap/Details/@ViewBag.kitapId">@ViewBag.kitapAdı</a></p>
+        }
+    </div>
+</div>
+
+     
     }
     else
     {
-        <li>Kitap almaya devam etmek istiyorsanız lütfen ceza ücretinizi kütüphane yöneticilerine ödeyiniz</li>
+<div class="kutu2">
+    <div class="ikon">
+        <lord-icon src="https://cdn.lordicon.com/dxjqoygy.json"
+                   trigger="loop"
+                   delay="5000"
+                   colors="primary:#123c69,secondary:#123c69"
+                   style="width:250px;height:250px">
+        </lord-icon>
+    </div>
+
+        <a href="/Home/Login" style="color: #123c69; text-align: center; display: block; margin-top:15px;">
+            Profilini görmek için giriş yap <lord-icon src="https://cdn.lordicon.com/rjzlnunf.json"
+                                                 trigger="loop"
+                                                 delay="100"
+                                                 colors="primary:#121331,secondary:#fad1e6"
+                                                 style="width:30px;height:30px; margin-bottom:5px;">
+            </lord-icon>
+        </a>
+</div>
     }
 
-    if (Model.KitapId == null)
-    {
-        <li>üzerinize kayıtlı kitap yok</li>
-    }
-    else
-    {
-        <li>@ViewBag.kitapAdı</li>
-        <a href="/Kitap/Details/@ViewBag.kitapId">Kitap detayı</a>
-    }
-}
-else
-{
+    <style>
+        .ikon {
+            display: flex;
+            justify-content: center;
+        }
 
-    <p>profil oluşturmak için<a href="/Home/Signup">üye</a> olun</p>
-    <p>Zten <a href="/Home/Login">üye</a> misiniz</p>
-}
+        .kutu {
+            display:flex;
+            margin: 100px 450px;
+            background-color: white;
+            padding: 50px;
+            border: 5px solid #123c69;
+            border-radius: 20px;
+        }
+        .kutu2 {
+            margin: 100px 450px;
+            background-color: white;
+            padding: 50px;
+            border: 5px solid #123c69;
+            border-radius: 20px;
+        }
+        .ceza {
+            display: flex;
+        }
+        p{
+            text-align:justify;
+        }
+    </style>

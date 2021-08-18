@@ -5,95 +5,149 @@
 }
 <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
 
-<h2>ÜYE BİLGİLERİ</h2>
-@Html.Action("İadeCeza", "Uye")
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.KullaniciAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Soyad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KullaniciSifre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KullaniciTC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KullaniciTelefon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KitapId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KitapAlımTarihi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ceza)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+
+
+<div class="uye" style="margin:30px;">
+
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciAdi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Soyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciSifre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciTC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciTelefon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KitapId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KitapAlımTarihi)
-            </td>
-            <td>
-                @if (item.Ceza == 2)
-                {
-
-                    <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
-                               trigger="loop-on-hover"
-                               colors="primary:#c71f16,secondary:#c71f16"
-                               style="width:50px;height:50px">
-                    </lord-icon>
-                }
-                else if (item.Ceza == 1)
-                {
-                    <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
-                               trigger="loop-on-hover"
-                               colors="primary:#ff9d28,secondary:#ff9d28"
-                               style="width:50px;height:50px">
-                    </lord-icon>
-                }
-                else
-                {
-                    <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
-                               trigger="loop-on-hover"
-                               colors="primary:#30e849,secondary:#30e849"
-                               style="width:50px;height:50px">
-                    </lord-icon>
-                }
-            </td>
+            <th>
+                KULLANICI ADI
+            </th>
+            <th>
+                AD
+            </th>
+            <th>
+                SOYAD
+            </th>
+            <th>
+                ŞİFRE
+            </th>
+            <th>
+                TC
+            </th>
+            <th>
+                TELEFON
+            </th>
+            <th>
+                <span type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    *CEZA
+                </span>
+            </th>
+            <th>
+                KİTAP ID
+            </th>
+            <th>
+                KİTAP ALIM TARİHİ
+                @*@Html.DisplayNameFor(model => model.KitapAlımTarihi)*@
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciSifre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciTelefon)
+                </td>
+                <td>
+                    @if (item.Ceza == 2)
+                    {
+
+                        <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                   trigger="loop-on-hover"
+                                   colors="primary:#c71f16,secondary:#c71f16"
+                                   style="width:50px;height:50px">
+                        </lord-icon>
+                    }
+                    else if (item.Ceza == 1)
+                    {
+                        <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                   trigger="loop-on-hover"
+                                   colors="primary:#ff9d28,secondary:#ff9d28"
+                                   style="width:50px;height:50px">
+                        </lord-icon>
+                    }
+                    else
+                    {
+                        <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                   trigger="loop-on-hover"
+                                   colors="primary:#30e849,secondary:#30e849"
+                                   style="width:50px;height:50px">
+                        </lord-icon>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KitapId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KitapAlımTarihi)
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.Action("İadeCeza", "Uye")
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CEZA PUANLARI</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%">
+                        <tr style="display: flex; justify-content: space-around; align-items: center;">
+                            <th>
+                                <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                           trigger="loop"
+                                           colors="primary:#30e849,secondary:#30e849"
+                                           style="width:50px;height:50px">
+                                </lord-icon>
+                            </th>
+                            <th>
+                                <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                           trigger="loop"
+                                           colors="primary:#ff9d28,secondary:#ff9d28"
+                                           style="width:50px;height:50px">
+                                </lord-icon>
+                            </th>
+                            <th>
+                                <lord-icon src="https://cdn.lordicon.com/tdrtiskw.json"
+                                           trigger="loop"
+                                           colors="primary:#c71f16,secondary:#c71f16"
+                                           style="width:50px;height:50px">
+                                </lord-icon>
+                            </th>
+                        </tr>
+                        <tr style="display: flex; justify-content: space-around; align-items: center;">
+                            <td>0</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">KAPAT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

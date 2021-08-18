@@ -23,7 +23,21 @@ namespace WebKutuphane.Controllers
         {
             return View(db.Kitaplar.ToList());
         }
-
+        [HttpPost]
+        public ActionResult Index(string search) //Kitap index sayfasında kitap arama
+        {
+            search = search.ToLower();
+            List<Kitap> kitap = GetKitaplar();
+            List<Kitap> kitapFiltre = new List<Kitap>();
+            foreach (var item in kitap)
+            {
+                if(item.tür.ToLower().Contains(search) || item.yazar.ToLower().Contains(search) || item.ad.ToLower().Contains(search) || item.dil.ToLower().Contains(search))
+                {
+                    kitapFiltre.Add(item);
+                }
+            }
+            return View(kitapFiltre.ToList());
+        }
         [HttpGet]
         public PartialViewResult KitapVer()
         {

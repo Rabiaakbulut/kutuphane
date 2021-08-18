@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html style="overflow-x: hidden;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +34,15 @@
 
 
 </head>
-<body style="background-color: #fdf8f5; color: #123c69;">
+<body style="background-color: white; color: #123c69;">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fdf8f5 !important; margin-top:10px;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: white !important; margin-top:10px;">
         <a class="navbar-brand" href="/Home/Index" style="margin-left: 20px; font-size: 30px; color: #123c69;">
             <lord-icon src="https://cdn.lordicon.com/wxnxiano.json"
                        trigger="loop-on-hover"
@@ -90,63 +96,86 @@
         </div>
     </nav>
 
-    <hr style="color: #e9cdcd; height: 5px; margin-bottom:50px;" />
+    <hr style="color: #cfcfcf; height: 5px; margin-bottom:50px;" />
 
     @RenderBody()
 
+    @*en yukarı çıkaran buton*@
+    <i class="fas fa-arrow-circle-up" onclick="topFunction()" id="myBtn" title="Go to top"></i>
 
-    <hr style="color: #e9cdcd; height: 5px; margin-bottom: 50px; " />
+    <hr style="color: #cfcfcf; height: 5px; margin-bottom: 50px; " />
     <footer>
-        <div class="footer" style="margin:20px;">
-            <h3>
-                Hakkımızda <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
-                                      trigger="loop-on-hover"
-                                      delay="1000"
-                                      colors="primary:#123c69,secondary:#123c69"
-                                      style="width:50px;height:50px">
-                </lord-icon>
-            </h3>
-            <p style="text-align:justify;">
-                Crs Soft 2021 yaz stajyeri olarak oluşturduğum bu projede,
-                üyeler kütüphanede bulunan kitapları çevrimiçi olarak görüntüleme, filtreleme ve ödünç alma
-                işlemlerini rahatlıkla gerçekleştirebilir. Kitaplar hakkında diğer üyelerin yorumlarını inceleyip
-                kendi fikirlerini paylaşabilir. Üyeler ceza sınırını aştıklarında ceza bedelini ödeyerek tekrardan
-                kitap almaya devam edebilir.
-            </p>
-            <h3>
-                Sosyal Medyada Biz <lord-icon src="https://cdn.lordicon.com/jqeuwnmb.json"
-                                              trigger="loop-on-hover"
-                                              delay="1000"
-                                              colors="primary:#123c69,secondary:#123c69"
-                                              style="width:50px;height:50px">
-                </lord-icon>
-            </h3>
-            <div class="hesaplar" style="display:flex;">
-                <a target="_blank" style="margin: 2px; color: #123c69;" href="https://github.com/Rabiaakbulut"><i class="fab fa-github-square fa-3x col-md-6"></i></a>
-                <a target="_blank" style="margin: 2px; color: #123c69; " href="https://www.linkedin.com/in/rabia-akbulut-1475461a2/"><i class="fab fa-linkedin fa-3x col-md-6"></i></a>
-                <a style="margin: 2px; color: #123c69; " href="#"><i class="fab fa-twitter-square fa-3x col-md-6"></i></a>
-                <a style="margin: 2px; color: #123c69; " href="#"><i class="fab fa-instagram-square fa-3x col-md-6"></i></a>
+        <div class="footer" style="margin:20px; display:flex; justify-content:space-around;">
+            <div class="sol col-md-6">
+                <h3>Hakkımızda</h3>
+                <p style="text-align:justify;">
+                    Crs Soft 2021 yaz stajyeri olarak oluşturduğum bu projede,
+                    üyeler kütüphanede bulunan kitapları çevrimiçi olarak görüntüleme, filtreleme ve ödünç alma
+                    işlemlerini rahatlıkla gerçekleştirebilir. Kitaplar hakkında diğer üyelerin yorumlarını inceleyip
+                    kendi fikirlerini paylaşabilir. Üyeler ceza sınırını aştıklarında ceza bedelini ödeyerek tekrardan
+                    kitap almaya devam edebilir.
+                </p>
+            </div>
+            <div class="sağ col-md-4">
+                <h3>Sosyal Medyada Biz</h3>
+                <div class="hesaplar" style="display:flex;">
+                    <a target="_blank" style="margin: 2px; color: #123c69;" href="https://github.com/Rabiaakbulut"><i class="fab fa-github-square fa-3x col-md-6"></i></a>
+                    <a target="_blank" style="margin: 2px; color: #123c69; " href="https://www.linkedin.com/in/rabia-akbulut-1475461a2/"><i class="fab fa-linkedin fa-3x col-md-6"></i></a>
+                    <a style="margin: 2px; color: #123c69; " href="#"><i class="fab fa-twitter-square fa-3x col-md-6"></i></a>
+                    <a style="margin: 2px; color: #123c69; " href="#"><i class="fab fa-instagram-square fa-3x col-md-6"></i></a>
+                </div>
+                <p>
+                    Öneri ve talepleriniz için<a href="mailto:akbulutrabia.3453@gmail.com"
+                                                 role="button">
+                        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json"
+                                   trigger="loop"
+                                   colors="primary:#123c69,secondary:#123c69"
+                                   style="width:50px;height:50px;">
+                        </lord-icon>
+                    </a>
+                </p>
             </div>
         </div>
-        <p style="text-align:center;">
-            Öneri ve talepleriniz için<a href="mailto:akbulutrabia.3453@gmail.com"
-                                         role="button">
-                <lord-icon src="https://cdn.lordicon.com/rhvddzym.json"
-                           trigger="loop"
-                           colors="primary:#123c69,secondary:#123c69"
-                           style="width:50px;height:50px;">
-                </lord-icon>
-            </a>
-        </p>
+
         <p style="text-align:center;">&copy; @DateTime.Now.Year - KÜTÜPHANE tüm haklar saklıdır.</p>
     </footer>
 
-    <!-- Navbar->Çıkış yap->Çıkış  basılınca çıkış fonksiyonunu çağır-->
+    @*yukarı çıkma butonu*@
     <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        //Navbar->Çıkış yap->Çıkış  basılınca çıkış fonksiyonunu çağır
         function myFunction() {
             window.location.href = "/Home/Logout";
         }
+
+        /*preloader*/
+        $(window).on('load', function () { // makes sure the whole site is loaded
+            $('#status').fadeOut(); // will first fade out the loading animation
+            $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            $('body').delay(350).css({ 'overflow': 'visible' });
+        })
     </script>
+
+
 
     <!--js etkileşim için kullanılan kodlar-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -166,12 +195,61 @@
 
     <style>
         html {
-            background-color: #fdf8f5;
+            background-color: white;
             color: #123c69;
         }
+
         h3 {
             text-decoration: underline;
             text-decoration-color: #bbb7c8;
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #123c69;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 100px;
+        }
+
+            #myBtn:hover {
+                background-color: #9cc4ee;
+            }
+
+        /*     preloader*/
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #fff;
+            /* change if the mask should have another color then white */
+            z-index: 99;
+            /* makes sure it stays on top */
+        }
+        #status {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            /* centers the loading animation horizontally one the screen */
+            top: 50%;
+            /* centers the loading animation vertically one the screen */
+            background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
+            /* path to your loading animation */
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: -100px 0 0 -100px;
+            /* is width and height divided by two */
         }
     </style>
 
