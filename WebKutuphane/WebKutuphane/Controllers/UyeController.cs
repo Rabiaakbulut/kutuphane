@@ -37,15 +37,15 @@ namespace WebKutuphane.Controllers
                 }
             }
             db.SaveChanges();
-            Response.Redirect(Request.RawUrl);//iade yaptıktan sonra  sayfa yenileme
+            Response.Redirect(Request.RawUrl);
             return PartialView();
         }
-        public List<UyeBilgileri> GetÜyeler()  //Üyeleri kitap details sayfasında görüntülemek için yorumları çağırıyoruz ve 
-        {                               //viewbag sayesinde view sayfasına birden fazla model gönderiyoruz
+        public List<UyeBilgileri> GetÜyeler() 
+        {                               
             return db.UyeBilgileris.ToList();
         }
-        public List<Kitap> GetKitaplar()  //Üyeleri kitap details sayfasında görüntülemek için yorumları çağırıyoruz ve 
-        {                               //viewbag sayesinde view sayfasına birden fazla model gönderiyoruz
+        public List<Kitap> GetKitaplar() 
+        {                              
             return db2.Kitaplar.ToList();
         }
 

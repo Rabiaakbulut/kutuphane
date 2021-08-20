@@ -4,42 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="yorum" style="margin:50px;">
+    <h3>YORUMLAR</h3>
+    <table class="table">
+        <tr>
+            <th>
+                KİTAP ID
+            </th>
+            <th>
+                KULLANICI ADI
+            </th>
+            <th>
+                YORUM
+            </th>
+            <th class="col-md-2">DÜZENLE - SİL</th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.KitapId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KullaniciAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Metin)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KitapId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Metin)
+                </td>
+                <td style="display:flex;">
+                    <lord-icon src="https://cdn.lordicon.com/wloilxuq.json" onclick="location.href = '/Yorum/Edit/@item.Id'" new { id=item.Id }
+                               trigger="loop-on-hover"
+                               colors="primary:#123c69,secondary:#123c69"
+                               style="width: 50px; height: 50px; cursor: pointer;">
+                    </lord-icon>
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" onclick="location.href = '/Yorum/Delete/@item.Id'" new { id=item.Id }
+                               trigger="loop-on-hover"
+                               colors="primary:#123c69,secondary:#123c69"
+                               style="width: 50px; height: 50px; cursor: pointer;">
+                    </lord-icon>
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.KitapId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KullaniciAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Metin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

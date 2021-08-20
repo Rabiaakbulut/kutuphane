@@ -16,7 +16,7 @@ namespace WebKutuphane.Controllers
 {
     public class KitapController : BaseController
     {
-        private KutuphaneContext db = new KutuphaneContext();
+        KutuphaneContext db = new KutuphaneContext();
         db_uyelikEntities1 db2 = new db_uyelikEntities1();
         // GET: Kitap
         public ActionResult Index()
@@ -57,10 +57,9 @@ namespace WebKutuphane.Controllers
                     {
                         if (item2.id == id&& item2.mevcutmu==false)
                         {
-                            item.KitapId = null;
-                            
+                            item.KitapId = null;                            
                             item2.mevcutmu = true;
-                            //item.kitapAlımTarihi nullable şekilde tanımlandığı için TimeSpan? oluyor ve timespan? days özelliği olmadığı için bu şkelil tanımlıyoruz
+
                             if ((DateTime.Now - (item.KitapAlımTarihi != null ? item.KitapAlımTarihi : DateTime.Now)).Value.Days > 20)
                             {
                                 if (item.Ceza == null)
@@ -68,7 +67,7 @@ namespace WebKutuphane.Controllers
                                 else
                                     item.Ceza += 1;
                             }
-                            item.KitapAlımTarihi = null;//ceza ekleeeeee3
+                            item.KitapAlımTarihi = null;
                             db.SaveChanges();
                             db2.SaveChanges();
                         }
@@ -99,10 +98,6 @@ namespace WebKutuphane.Controllers
                         db.SaveChanges();
                         db2.SaveChanges();
                     }
-                    //else
-                    //{
-                    //   //üzerinde birden fazla kitap varsa hata mesajı ver ya da kitap alma butonunu aktif etme
-                    //}
                 }
             }
             return View();

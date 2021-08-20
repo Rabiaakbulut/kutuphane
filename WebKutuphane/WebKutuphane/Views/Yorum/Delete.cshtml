@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete";
 }
 
-@if (Session["KullaniciAdiSS"] != null && Model.KullaniciAdi == Session["KullaniciAdiSS"].ToString())
+@if (Session["KullaniciAdiSS"] != null && Model.KullaniciAdi == Session["KullaniciAdiSS"].ToString() || Model.KullaniciAdi=="admin")
 {
     <div class="kutu">
         <h3>Yorumu silmek istediğinize emin misiniz?</h3>
